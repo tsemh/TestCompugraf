@@ -1,4 +1,4 @@
-# Project Test
+# TestCompugraf
 
 ## Status do projeto
 O projeto está em desenvolvimento. Para finalizar o projeto restam apenas 2 'tasks' não concluídas.
