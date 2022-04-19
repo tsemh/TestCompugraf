@@ -1,0 +1,97 @@
+<div class="d-flex justify-content-evenly my-5">
+  <app-titulo [title]='title'></app-titulo>
+  <button class="btn btn-success" (click)="novaPessoaAbreModal(template)">Cadastrar</button>
+</div>
+  
+  <table class="table table-hover">
+    <thead class="table-secondary">
+      <tr>
+        <th scope="col">CPF</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Sobrenome</th>
+        <th scope="col">E-mail</th>
+        <th scope="col">Telefone</th>
+        <th scope="col">Nacionalidade</th>
+        <th scope="col">CEP</th>
+        <th scope="col">Estado</th>
+        <th scope="col">Cidade</th>
+        <th scope="col">Logradouro</th>
+        <th scope="col">Opções</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let pessoa of pessoas">
+          <td>{{ pessoa.cpf }}</td>
+          <td>{{ pessoa.nome }}</td>
+          <td>{{ pessoa.sobrenome }}</td>
+          <td>{{ pessoa.email }}</td>
+          <td>{{ pessoa.telefone }}</td>
+          <td>{{ pessoa.nacionalidade }}</td>
+          <td>{{ pessoa.cep }}</td>
+          <td>{{ pessoa.estado }}</td>
+          <td>{{ pessoa.cidade }}</td>
+          <td>{{ pessoa.logradouro }}</td>
+          <td class="btn-group">
+            <button class="btn btn-outline-secondary" (click)="selecionaPessoaAbreModal(pessoa, template)">Editar</button>
+            <button class="btn btn-outline-danger" (click)="deletarPessoa(pessoa.id)">Deletar</button>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #template>
+      <div class="modal-header">
+        <app-titulo [title]="'#'+pessoaSelecionada.id+' - '+pessoaSelecionada.nome"></app-titulo>
+        <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
+        </button>
+    </div>
+
+    <div class="modal-body">
+    
+      <form [formGroup]="pessoaForm">
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">CPF</label>
+          <input type="text" class="form-control" id="cpf" formControlName="cpf" >
+
+          <label for="exampleInputPassword1" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="nome" formControlName="nome" >
+
+          <label for="exampleInputPassword1" class="form-label">Sobrenome</label>
+          <input type="text" class="form-control" id="sobrenome" formControlName="sobrenome" >
+
+          <label for="exampleInputPassword1" class="form-label">E-mail</label>
+          <input type="text" class="form-control" id="email" formControlName="email" >
+
+          <label for="exampleInputPassword1" class="form-label">Telefone</label>
+          <input type="text" class="form-control" id="telefone" formControlName="telefone" >
+          
+          <label for="exampleInputPassword1" class="form-label">Nacionalidade</label>
+          <input type="text" class="form-control" id="nacionalidade" formControlName="nacionalidade" >
+
+          <label for="exampleInputPassword1" class="form-label">CEP</label>
+          <input type="text" class="form-control" id="cep" formControlName="cep">
+
+          <label for="exampleInputPassword1" class="form-label">Estado</label>
+          <input type="text" class="form-control" id="estado" formControlName="estado" >
+
+          <label for="exampleInputPassword1" class="form-label">Cidade</label>
+          <input type="text" class="form-control" id="cidade" formControlName="cidade" >
+
+          <label for="exampleInputPassword1" class="form-label">Logradouro</label>
+          <input type="text" class="form-control" id="logradouro" formControlName="logradouro" >
+
+        </div>
+                
+        <div class="d-flex justify-content-end">
+          <div class="col-sm-6 d-flex justify-content-end">
+            <button *ngIf="pessoaSelecionada.id !== 0 " type="submit" class="btn btn-success" [disabled]="!pessoaForm.valid" (click)="editarSubmit()" (click)="modalRef?.hide()" >Enviar</button>
+
+            <button *ngIf="pessoaSelecionada.id === 0 " type="submit" class="btn btn-success" [disabled]="!pessoaForm.valid" (click)="criarSubmit()" (click)="modalRef?.hide()" >Enviar</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+</ng-template>
+
+
