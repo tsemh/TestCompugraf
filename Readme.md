@@ -3,7 +3,7 @@
 ## Status do projeto
 O projeto está em desenvolvimento. Para finalizar o projeto restam apenas 2 'tasks' não concluídas.
  
-1. A adição automática das informaões pelo CEP.
+1. A adição automática das informações pelo CEP.
 
 2. A não permissão de duplicação de dados.
 
